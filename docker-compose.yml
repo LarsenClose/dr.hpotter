@@ -1,0 +1,42 @@
+
+version: "3.9"
+
+services:
+  sshd:
+    build: 
+      context: sshd
+      dockerfile: Dockerfile
+  telnetd:
+    build:
+      context: telnetd
+      dockerfile: Dockerfile
+  dns:
+    build:
+      context: telnetd
+      dockerfile: Dockerfile
+
+  ljordan:
+    build:
+      context: ljordan
+      dockerfile: Dockerfile
+    volumes:
+      - /ljordan/hpotter_api:/hpotter.db
+
+  hpotter:
+    build:
+      context: hpotter
+      dockerfile: Dockerfile
+    volumes:
+      - /hpotter:/hpotter.db
+
+  view:
+    build:
+      context: viewserve
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+volumes:
+  hpotter.db:
+            
+ 
+

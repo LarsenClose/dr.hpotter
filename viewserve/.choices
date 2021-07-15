@@ -1,0 +1,8 @@
+docker build -t viewserve .
+
+docker build  --no-cache -t viewserve .
+
+docker run --hostname credentials_server -p 8080:80 viewserve
+#docker run -it --rm -d -p 8080:80 --name my viewserve
+
+docker run -n viewserve:latest --rm -d -p 8080:80 

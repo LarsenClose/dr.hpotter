@@ -1,0 +1,13 @@
+**.pyc
+**.db
+**/__pycache__
+*8/.idea
+**/.vscode
+**/.coverage
+**/coverage.xml
+/**.DS_Store
+**/htmlcov
+**/.env
+**/config.yml
+**/hpotter.db
+**/firewall.yml
