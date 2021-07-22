@@ -2,20 +2,27 @@
 version: "3.9"
 
 services:
+
   sshd:
+    image: "privsim/multiarch-dr.hpotter:sshd"
     build: 
       context: sshd
       dockerfile: Dockerfile
+
   telnetd:
-    build:
-      context: telnetd
-      dockerfile: Dockerfile
-  dns:
+    image: "privsim/multiarch-dr.hpotter:telnetd"
     build:
       context: telnetd
       dockerfile: Dockerfile
 
+  bindd:
+    image: "privsim/multiarch-dr.hpotter:bindd"
+    build:
+      context: bindd
+      dockerfile: Dockerfile
+
   ljordan:
+    image: "privsim/multiarch-dr.hpotter:ljordan"
     build:
       context: ljordan
       dockerfile: Dockerfile
@@ -23,6 +30,7 @@ services:
       - /ljordan/hpotter_api:/hpotter.db
 
   hpotter:
+    image: "privsim/multiarch-dr.hpotter:hpotter"
     build:
       context: hpotter
       dockerfile: Dockerfile
@@ -30,6 +38,7 @@ services:
       - /hpotter:/hpotter.db
 
   view:
+    image: "privsim/multiarch-dr.hpotter:viewserve"
     build:
       context: viewserve
       dockerfile: Dockerfile

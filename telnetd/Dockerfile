@@ -6,7 +6,8 @@ FROM debian
 
 EXPOSE 23
 
-RUN apt update && apt -y install inetutils-telnetd libpam-script sudo
+RUN apt-get update
+RUN apt-get -y install inetutils-telnetd libpam-script sudo
 
 COPY ./pam_script_auth /usr/share/libpam-script/
 

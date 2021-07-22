@@ -1,12 +1,13 @@
-# syntax = docker/dockerfile:experimental
-FROM debian:latest
+FROM debian
 
 
 #EXPOSE 53/tcp
 EXPOSE 53/udp
 #EXPOSE 953/tcp
 
-RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests bind9 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update 
+RUN apt-get install bind9 -y
+RUN rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /var/run/named /etc/bind/zones
 RUN chmod 775 /var/run/named
 RUN chown root:bind /var/run/named
