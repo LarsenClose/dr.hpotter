@@ -4,10 +4,10 @@ FROM python
 
 WORKDIR /ljordan
 
-COPY . /
+COPY . ./
 
 RUN pip install -U pip 
-RUN pip install -r /requirements.txt
+RUN pip install -r requirements.txt
 
 
 CMD [ "python", "-m", "hpotter_api"]
