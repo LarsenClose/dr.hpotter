@@ -1,9 +1,10 @@
+ARG ARCH=
 
-FROM nginx
+FROM ${ARCH}nginx
 
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./*.html /usr/share/nginx/html/
-COPY ./*.js /usr/share/nginx/html/
-COPY static/ /usr/share/nginx/html/static/
+ADD ./nginx.conf /etc/nginx/nginx.conf
+ADD ./*.html /usr/share/nginx/html/
+ADD ./*.js /usr/share/nginx/html/
+ADD static/ /usr/share/nginx/html/static/
 

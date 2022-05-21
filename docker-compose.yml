@@ -1,44 +1,26 @@
-
+---
 version: "3.9"
 
 services:
-
-  sshd:
-    image: "privsim/multiarch-dr.hpotter:sshd"
-    build: 
-      context: sshd
-      dockerfile: Dockerfile
-
-  telnetd:
-    image: "privsim/multiarch-dr.hpotter:telnetd"
-    build:
-      context: telnetd
-      dockerfile: Dockerfile
-
-  bindd:
-    image: "privsim/multiarch-dr.hpotter:bindd"
-    build:
-      context: bindd
-      dockerfile: Dockerfile
-
+  
   ljordan:
-    image: "privsim/multiarch-dr.hpotter:ljordan"
+      image: "10.0.0.10:5000/dr.hpotter/ljordan"
     build:
       context: ljordan
       dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
     volumes:
       - /ljordan/hpotter_api:/hpotter.db
-
   hpotter:
-    image: "privsim/multiarch-dr.hpotter:hpotter"
+      image: "10.0.0.10:5000/dr.hpotter/hpotter"
     build:
       context: hpotter
       dockerfile: Dockerfile
     volumes:
       - /hpotter:/hpotter.db
-
   view:
-    image: "privsim/multiarch-dr.hpotter:viewserve"
+      image: "10.0.0.10:5000/dr.hpotter/viewserve"
     build:
       context: viewserve
       dockerfile: Dockerfile

@@ -1,10 +1,11 @@
+ARG ARCH=
 
-FROM python
+FROM ${ARCH}python
 
+ADD . ../ljordan
 
 WORKDIR /ljordan
 
-COPY . ./
 
 RUN pip install -U pip 
 RUN pip install -r requirements.txt

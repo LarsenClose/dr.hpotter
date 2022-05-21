@@ -1,17 +1,13 @@
-FROM debian
+ARG ARCH=
 
+FROM ${ARCH}debian:latest
 
-#EXPOSE 53/tcp
+#EXPOSE 53
 EXPOSE 53/udp
-#EXPOSE 953/tcp
 
-RUN apt-get update 
-RUN apt-get install -y --no-install-recommends --no-install-suggests bind9 \
-sudo
-RUN rm -rf /var/lib/apt/lists/*
-RUN mkdir -p /var/run/named 
-RUN mkdir -p /etc/bind/zones
-RUN chmod 777 /var/run/named
+RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests bind9 && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /var/run/named /etc/bind/zones /etc/default/
+RUN chmod 775 /var/run/named
 RUN chown root:bind /var/run/named
 
 COPY /etc_bind/* /etc/bind/
@@ -21,4 +17,3 @@ VOLUME ["/var/cache/bind", "/etc/bind", "/var/lib/bind", "/var/log", "/var/run/n
 
 
 CMD ["/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
-

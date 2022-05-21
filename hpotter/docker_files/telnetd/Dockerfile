@@ -1,13 +1,9 @@
+ARG ARCH=
 
-FROM debian:stable-backports
-
-
-
-
+FROM {ARCH}debian:buster-slim
 EXPOSE 23
 
-RUN apt-get update
-RUN apt-get -y install inetutils-telnetd libpam-script sudo
+RUN apt-get update && apt-get -y install inetutils-telnetd libpam-script sudo
 
 COPY ./pam_script_auth /usr/share/libpam-script/
 
